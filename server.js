@@ -31,8 +31,13 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-app.get('/', (req, res) => {
-    res.render('index', {name: req.user.name, comments: req.user.comments});
+app.get('/',  (req, res) => {
+     User.findById(req.user._id)
+        .populate('comments')
+        .exec(function(err, results) {
+            if(err) {console.log(err);}
+            res.render('index', {name: results.name, comments: results.comments})
+        })
 });
 
 app.post('/', async (req, res) => {
@@ -45,7 +50,7 @@ app.post('/', async (req, res) => {
     relatedUser.comments.push(comment);
     await relatedUser.save(function(err) {
         if(err) {console.log(err)}
-        res.render('user', {name: relatedUser.name, comments: relatedUser.comments})
+        res.redirect('/')
     })
 })
 
