@@ -1,0 +1,11 @@
+<h1>User <%=name%> </h1>
+
+<ul>
+    <% for(var i=0; i<comments.length; i++) { %>
+        <li>
+            <%= comments[i] %>
+        </li>
+    <% } %>
+</ul>
+
+<a href="/login">Login</a>

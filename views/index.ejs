@@ -1,4 +1,22 @@
 <h1>Hello <%=name%></h1>
 
+<form action="/" method="POST">
+    <div>
+        <label for="comment">Comment</label>
+        <input type="text" id="comment" name="comment">
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+
+<ul>
+    <% for(var i=0; i<comments.length; i++) { %>
+        <li>
+            <%= comments[i] %>
+        </li>
+    <% } %>
+</ul>
+
+
 <a href="/login">Login</a>
 <a href="/register">Register</a>
